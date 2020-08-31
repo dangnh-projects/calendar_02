@@ -18,6 +18,7 @@ defmodule Calendar02Web.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/calendars", CalendarLive, :index
   end
 
   # Other scopes may use custom stacks.
