@@ -15,7 +15,8 @@ defmodule Calendar02Web.CalendarLive do
       conn: socket,
       current_date: current_date,
       day_names: day_names(@week_start_at),
-      week_rows: week_rows(current_date)
+      week_rows: week_rows(current_date),
+      date_picked: date_picked
     ]
 
     {:ok, assign(socket, assigns)}
@@ -23,6 +24,10 @@ defmodule Calendar02Web.CalendarLive do
 
   def render(assigns) do
     Calendar02Web.CalendarView.render("index.html", assigns)
+  end
+
+  defp date_picked() do
+    date_picked = Timex.now()
   end
 
   defp day_names(:sun), do:  [7, 1, 2, 3, 4, 5, 6] |> Enum.map(&Timex.day_shortname/1)
@@ -68,9 +73,11 @@ defmodule Calendar02Web.CalendarLive do
 
   def handle_event("pick-date", %{"date" => date}, socket) do
     current_date = Timex.parse!(date, "{YYYY}-{0M}-{D}")
+    date_picked =  Timex.parse!(date, "{YYYY}-{0M}-{D}")
 
     assigns = [
-      current_date: current_date
+      current_date: current_date,
+      date_picked: date_picked
     ]
 
     IO.inspect date

@@ -28,7 +28,7 @@ defmodule Calendar02Web.CalendarLiveComponent do
   end
 
   defp current_date?(assigns) do
-    Map.take(assigns.day, [:year, :month, :day]) == Map.take(assigns.current_date, [:year, :month, :day])
+    Map.take(assigns.day, [:year, :month, :day]) == Map.take(assigns.date_picked, [:year, :month, :day])
     #IO.inspect assigns.current_date
   end
 

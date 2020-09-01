@@ -21,7 +21,7 @@
         <%= for week <- @week_rows do %>
             <tr>
                 <%= for day <- week do %>
-                    <%= live_component @conn, Calendar02Web.CalendarLiveComponent, day: day, current_date: @current_date %>
+                    <%= live_component @conn, Calendar02Web.CalendarLiveComponent, day: day, current_date: @current_date, date_picked: @date_picked %>
                 <% end %>
             </tr>
         <% end %>
