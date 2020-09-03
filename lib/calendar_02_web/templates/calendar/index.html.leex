@@ -27,5 +27,19 @@
         <% end %>
     </tbody>
 </table>
+<%= if @show_modal do %>
+    <%= live_component(@conn,
+                        Calendar02Web.Component.ModalLive,
+                        id: "confirm-boom",
+                        title: "Confirm",
+                        body: "Are you sure you want to choose this day?",
+                        right_button: "Sure",
+                        right_button_action: "reason-confirm",
+                        right_button_param: "boom",
+                        left_button: "No",
+                        left_button_action: "cancel",
+                        date_picked: @date_picked)
+    %>
+<% end %>
 
 <span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>

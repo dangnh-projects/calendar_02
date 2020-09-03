@@ -19,7 +19,11 @@ defmodule Calendar02Web.Router do
 
     live "/", PageLive, :index
     live "/calendars", CalendarLive, :index
-    resources "/reasons", ReasonController
+
+    #get "/reasons", ReasonController, :index
+    get "/reasons/new", ReasonController, :new
+    post "/reasons", ReasonController, :create
+    #resources "/reasons", ReasonController
   end
 
   # Other scopes may use custom stacks.

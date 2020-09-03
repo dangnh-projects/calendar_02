@@ -16,7 +16,8 @@ defmodule Calendar02Web.CalendarLive do
       current_date: current_date,
       day_names: day_names(@week_start_at),
       week_rows: week_rows(current_date),
-      date_picked: date_picked
+      date_picked: date_picked,
+      show_modal: show_modal
     ]
 
     {:ok, assign(socket, assigns)}
@@ -28,6 +29,10 @@ defmodule Calendar02Web.CalendarLive do
 
   defp date_picked() do
     date_picked = Timex.now()
+  end
+
+  def show_modal() do
+    show_modal = false
   end
 
   defp day_names(:sun), do:  [7, 1, 2, 3, 4, 5, 6] |> Enum.map(&Timex.day_shortname/1)
@@ -77,13 +82,33 @@ defmodule Calendar02Web.CalendarLive do
 
     assigns = [
       current_date: current_date,
-      date_picked: date_picked
+      date_picked: date_picked,
+      show_modal: true
     ]
 
-    IO.inspect date
+    #IO.inspect date
     #Routes.page_path(@conn, :index)
     #Routes.page_path(:index)
     #Calendar02Web.Router.page_path(Calendar02Web.Endpoint, :index)
     {:noreply, assign(socket, assigns)}
+  end
+
+  def handle_event("left-button-click", _, socket) do
+    assigns = [
+      show_modal: false
+    ]
+
+    {:noreply, assign(socket, assigns)}
+  end
+
+  def handle_event("right-button-click", %{"date" => date}, socket) do
+    date_picked =  Timex.parse!(date, "{YYYY}-{0M}-{D}")
+
+
+    IO.inspect date_picked
+    {:noreply,
+      push_redirect(socket,
+        to: Routes.reason_path(socket, :new)
+      )}
   end
 end
