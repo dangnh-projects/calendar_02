@@ -1,0 +1,33 @@
+<h1>Show Reason</h1>
+
+<ul>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @reason.username %>
+  </li>
+
+  <li>
+    <strong>Userid:</strong>
+    <%= @reason.userid %>
+  </li>
+
+  <li>
+    <strong>Date reason:</strong>
+    <%= @reason.date_reason %>
+  </li>
+
+  <li>
+    <strong>Reason:</strong>
+    <%= @reason.reason %>
+  </li>
+
+  <li>
+    <strong>Confirm:</strong>
+    <%= @reason.confirm %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.reason_path(@conn, :edit, @reason) %></span>
+<span><%= link "Back", to: Routes.reason_path(@conn, :index) %></span>
