@@ -21,7 +21,7 @@ defmodule Calendar02Web.Router do
     live "/calendars", CalendarLive, :index
 
     #get "/reasons", ReasonController, :index
-    get "/reasons/new", ReasonController, :new
+    get "/reasons/:date/:id/new", ReasonController, :new
     post "/reasons", ReasonController, :create
     #resources "/reasons", ReasonController
   end

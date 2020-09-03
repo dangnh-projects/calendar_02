@@ -104,11 +104,12 @@ defmodule Calendar02Web.CalendarLive do
   def handle_event("right-button-click", %{"date" => date}, socket) do
     date_picked =  Timex.parse!(date, "{YYYY}-{0M}-{D}")
 
+    id = "12313"
 
     IO.inspect date_picked
     {:noreply,
       push_redirect(socket,
-        to: Routes.reason_path(socket, :new)
+        to: Routes.reason_path(socket, :new, date, id)
       )}
   end
 end

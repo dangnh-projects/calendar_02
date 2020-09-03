@@ -9,7 +9,7 @@ defmodule Calendar02Web.ReasonController do
     render(conn, "index.html", reasons: reasons)
   end
 
-  def new(conn, _params) do
+  def new(conn, %{"date" => date, "id" => id}) do
     changeset = Calendars.change_reason(%Reason{})
     render(conn, "new.html", changeset: changeset)
   end
