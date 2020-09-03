@@ -7,7 +7,9 @@
       <th>Userid</th>
       <th>Date reason</th>
       <th>Reason</th>
+      <th>Day</th>
       <th>Confirm</th>
+      <th>Confirm Date</th>
 
       <th></th>
     </tr>
@@ -19,7 +21,9 @@
       <td><%= reason.userid %></td>
       <td><%= reason.date_reason %></td>
       <td><%= reason.reason %></td>
+      <td><%= reason.day_limit %></td>
       <td><%= reason.confirm %></td>
+      <td><%= reason.confirm_date %></td>
 
       <td>
         <span><%= link "Show", to: Routes.reason_path(@conn, :show, reason) %></span>
@@ -30,5 +34,3 @@
 <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Reason", to: Routes.reason_path(@conn, :new) %></span>

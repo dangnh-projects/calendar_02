@@ -21,9 +21,18 @@
   <%= number_input f, :reason %>
   <%= error_tag f, :reason %>
 
+  <%= label f, :day_limit %>
+  <%= select f, :day_limit, ["0.5": 0, "1": 1], selected: [1] %>
+  <%= error_tag f, :day_limit %>
+
+
   <%= label f, :confirm %>
   <%= checkbox f, :confirm %>
   <%= error_tag f, :confirm %>
+
+  <%= label f, :confirm_date %>
+  <%= number_input f, :confirm_date %>
+  <%= error_tag f, :confirm_date %>
 
   <div>
     <%= submit "Save" %>

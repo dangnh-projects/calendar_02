@@ -23,8 +23,18 @@
   </li>
 
   <li>
+    <strong>Day:</strong>
+    <%= @reason.day_limit %>
+  </li>
+
+  <li>
     <strong>Confirm:</strong>
     <%= @reason.confirm %>
+  </li>
+
+  <li>
+    <strong>Confirm Date:</strong>
+    <%= @reason.confirm_date %>
   </li>
 
 </ul>

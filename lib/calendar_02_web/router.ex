@@ -20,9 +20,14 @@ defmodule Calendar02Web.Router do
     live "/", PageLive, :index
     live "/calendars", CalendarLive, :index
 
-    #get "/reasons", ReasonController, :index
+    get "/reasons", ReasonController, :index
+    get "/reasons/:id", ReasonController, :show
+    delete "/reasons/:id", ReasonController, :delete
     get "/reasons/:date/:id/new", ReasonController, :new
     post "/reasons", ReasonController, :create
+    get "/reasons/:id/edit", ReasonController, :edit
+    patch "/reasons/:id", ReasonController, :update
+    put "/reasons/:id", ReasonController, :update
     #resources "/reasons", ReasonController
   end
 
