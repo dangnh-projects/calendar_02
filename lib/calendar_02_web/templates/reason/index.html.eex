@@ -1,0 +1,34 @@
+<h1>Listing Reasons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Userid</th>
+      <th>Date reason</th>
+      <th>Reason</th>
+      <th>Confirm</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for reason <- @reasons do %>
+    <tr>
+      <td><%= reason.username %></td>
+      <td><%= reason.userid %></td>
+      <td><%= reason.date_reason %></td>
+      <td><%= reason.reason %></td>
+      <td><%= reason.confirm %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.reason_path(@conn, :show, reason) %></span>
+        <span><%= link "Edit", to: Routes.reason_path(@conn, :edit, reason) %></span>
+        <span><%= link "Delete", to: Routes.reason_path(@conn, :delete, reason), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Reason", to: Routes.reason_path(@conn, :new) %></span>

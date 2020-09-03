@@ -18,6 +18,12 @@ defmodule Calendar02Web.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/calendars", CalendarLive, :index
+
+    #get "/reasons", ReasonController, :index
+    get "/reasons/new", ReasonController, :new
+    post "/reasons", ReasonController, :create
+    #resources "/reasons", ReasonController
   end
 
   # Other scopes may use custom stacks.

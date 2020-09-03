@@ -1,0 +1,45 @@
+<div class="flex items-baseline justify-between">
+  <h3 class="ml-8 text-gray-600 text-5xl">
+    <%= Timex.format!(@current_date, "%B %Y", :strftime) %>
+  </h3>
+  <div>
+    <a href="#" phx-click="prev-month" class="inline-block text-2xl bg-white p-6 rounded shadow text-gray-600 border border-gray-200">&laquo; Prev</a>
+    <a href="#" phx-click="next-month" class="inline-block text-2xl bg-white p-6 rounded shadow text-gray-600 border border-gray-200"> Next &raquo;</a>
+  </div>
+</div>
+<table class="w-full mt-4 border border-gray-200 rounded-lg shadow-lg">
+    <thead>
+        <tr>
+            <%= for day_name <- @day_names do %>
+                <th class="text-2xl p-6 text-gray-600 border border-gray-200 text-center">
+                    <%= day_name %>
+                </th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <%= for week <- @week_rows do %>
+            <tr>
+                <%= for day <- week do %>
+                    <%= live_component @conn, Calendar02Web.CalendarLiveComponent, day: day, current_date: @current_date, date_picked: @date_picked %>
+                <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= if @show_modal do %>
+    <%= live_component(@conn,
+                        Calendar02Web.Component.ModalLive,
+                        id: "confirm-boom",
+                        title: "Confirm",
+                        body: "Are you sure you want to choose this day?",
+                        right_button: "Sure",
+                        right_button_action: "reason-confirm",
+                        right_button_param: "boom",
+                        left_button: "No",
+                        left_button_action: "cancel",
+                        date_picked: @date_picked)
+    %>
+<% end %>
+
+<span><%= link "Back", to: Routes.page_path(@conn, :index) %></span>
