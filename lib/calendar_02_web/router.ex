@@ -29,6 +29,7 @@ defmodule Calendar02Web.Router do
     patch "/reasons/:id", ReasonController, :update
     put "/reasons/:id", ReasonController, :update
     #resources "/reasons", ReasonController
+    resources "/reasons_list", ReasonListController
   end
 
   # Other scopes may use custom stacks.

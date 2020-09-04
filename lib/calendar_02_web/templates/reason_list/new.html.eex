@@ -1,0 +1,5 @@
+<h1>New Reason list</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.reason_list_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.reason_list_path(@conn, :index) %></span>

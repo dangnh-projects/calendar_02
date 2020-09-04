@@ -15,12 +15,12 @@
     </tr>
   </thead>
   <tbody>
-<%= for reason <- @reasons do %>
+<%= for {reason, list_reason} <- @reasons do %>
     <tr>
       <td><%= reason.username %></td>
       <td><%= reason.userid %></td>
       <td><%= reason.date_reason %></td>
-      <td><%= reason.reason %></td>
+      <td><%= list_reason.name %></td>
       <td><%= reason.day_limit %></td>
       <td><%= reason.confirm %></td>
       <td><%= reason.confirm_date %></td>

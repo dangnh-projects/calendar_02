@@ -7,6 +7,7 @@ defmodule Calendar02.Calendars do
   alias Calendar02.Repo
 
   alias Calendar02.Calendars.Reason
+  alias Calendar02.ReasonsList.ReasonList
 
   @doc """
   Returns the list of reasons.
@@ -17,8 +18,43 @@ defmodule Calendar02.Calendars do
       [%Reason{}, ...]
 
   """
+  #Calendar02.Calendars.list_reasons
+
   def list_reasons do
-    Repo.all(Reason)
+    # reasons = from r in Reason, select: struct(p, [:id, :reason]) #, join: l in ReasonList, on: r.reason == l.id
+    # Repo.all(reasons)
+
+    #Reason |> select([c], struct(c, [:name]),, struct(c, [:name]))
+
+    Reason
+    |> join(:left, [p], c in ReasonList, on: c.id == p.reason and c.active == true)
+    |> select([p, c], {p, c})
+    |> Repo.all()
+
+    #reasons = from(r in Reason, select: struct({r}, [:id]))
+    # Repo.all(reasons)
+    #Reason |> select([c], %{id: c.id}) |> Repo.all()
+
+
+    #Repo.all(Reason)
+    # {reasons} =
+    #   Reason
+      #from p in Reason, select: {p}
+    #|> join(:left, [p], c in ReasonList, on: c.id == p.reason and c.active == true)
+    #|> select([p, c], {p, c})
+    # |> select([r], {r})
+    # |> Repo.all()
+    # b = Repo.all(posts_with_comments)
+    # c = Repo.all(Reason)
+    # d = Repo.all(posts_with_comments)
+
+    #IO.inspect reasons
+    # IO.inspect " ------- B --------- "
+    # IO.inspect b
+    # IO.inspect " -------- C -------- "
+    # IO.inspect c
+    # IO.inspect " ------- D --------- "
+    # IO.inspect [d]
   end
 
   @doc """
@@ -35,7 +71,14 @@ defmodule Calendar02.Calendars do
       ** (Ecto.NoResultsError)
 
   """
-  def get_reason!(id), do: Repo.get!(Reason, id)
+  def get_reason!(id) do
+    Reason
+    |> join(:left, [p], c in ReasonList, on: c.id == p.reason and c.active == true)
+    |> select([p, c], {p, c})
+    |> where([p], p.id == ^id)
+    |> Repo.one()
+    #Repo.get(Reason, id)
+  end
 
   @doc """
   Creates a reason.

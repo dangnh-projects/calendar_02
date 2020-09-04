@@ -1,0 +1,23 @@
+<h1>Show Reason list</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @reason_list.name %>
+  </li>
+
+  <li>
+    <strong>Reasion:</strong>
+    <%= @reason_list.reasion_id %>
+  </li>
+
+  <li>
+    <strong>Active:</strong>
+    <%= @reason_list.active %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.reason_list_path(@conn, :edit, @reason_list) %></span>
+<span><%= link "Back", to: Routes.reason_list_path(@conn, :index) %></span>

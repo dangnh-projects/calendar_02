@@ -19,7 +19,7 @@
 
   <li>
     <strong>Reason:</strong>
-    <%= @reason.reason %>
+    <%= @list_reason.name %>
   </li>
 
   <li>
